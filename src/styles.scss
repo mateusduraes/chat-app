@@ -9,10 +9,71 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$chat-app-primary: mat.define-palette(mat.$indigo-palette);
+$primary-palette: (
+  50 : #e6eef9,
+  100 : #c0d4f1,
+  200 : #96b7e8,
+  300 : #6b9adf,
+  400 : #4c85d8,
+  500 : #2c6fd1,
+  600 : #2767cc,
+  700 : #215cc6,
+  800 : #1b52c0,
+  900 : #1040b5,
+  A100 : #e4ebff,
+  A200 : #b1c4ff,
+  A400 : #7e9eff,
+  A700 : #648bff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+$chat-app-primary: mat.define-palette($primary-palette);
+$accent-palette: (
+  50 : #e4f7ff,
+  100 : #bcebff,
+  200 : #90ddff,
+  300 : #64cffe,
+  400 : #42c5fe,
+  500 : #21bbfe,
+  600 : #1db5fe,
+  700 : #18acfe,
+  800 : #14a4fe,
+  900 : #0b96fd,
+  A100 : #ffffff,
+  A200 : #f4faff,
+  A400 : #c1e2ff,
+  A700 : #a7d6ff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #000000,
+      600 : #000000,
+      700 : #000000,
+      800 : #000000,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
 $chat-app-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -20,7 +81,7 @@ $chat-app-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$chat-app-theme: mat.define-light-theme((
+$chat-app-theme: mat.define-dark-theme((
   color: (
     primary: $chat-app-primary,
     accent: $chat-app-accent,
@@ -36,4 +97,4 @@ $chat-app-theme: mat.define-light-theme((
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: #fff; background-color: #303030; }
