@@ -1,1 +1,9 @@
-<p>login works!</p>
+<main class="login-container">
+  <div class="inner">
+    <h2 class="login-text">
+      <img class="login-img" src="assets/images/logo.png" alt="logo">
+      Sign in to your account
+    </h2>
+    <app-login-form (loginSubmit)="onLoginSubmit($event)"></app-login-form>
+  </div>
+</main>
