@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { LoginSubmitEvent } from './components/login-form/login-form.component';
+import { LoginCredentials } from './models/login-credentials';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +10,10 @@ import { LoginSubmitEvent } from './components/login-form/login-form.component';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor() {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  onLoginSubmit({ email, password }: LoginSubmitEvent): void {
-    console.log('email', email);
-    console.log('password', password);
+  onLoginSubmit(credentials: LoginCredentials): void {
+    this.authService.login(credentials);
+    this.router.navigate(['/chat']);
   }
 }

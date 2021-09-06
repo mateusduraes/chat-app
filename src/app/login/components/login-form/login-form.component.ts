@@ -1,10 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-export type LoginSubmitEvent = {
-  email: string;
-  password: string;
-};
+import { LoginCredentials } from '../../models/login-credentials';
 
 @Component({
   selector: 'app-login-form',
@@ -14,7 +11,7 @@ export type LoginSubmitEvent = {
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
   hidePassword = true;
-  @Output() loginSubmit = new EventEmitter<LoginSubmitEvent>();
+  @Output() loginSubmit = new EventEmitter<LoginCredentials>();
 
   constructor(private formBuilder: FormBuilder) {}
 
