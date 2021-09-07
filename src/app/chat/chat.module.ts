@@ -10,9 +10,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { ChatRoutingModule } from './chat-routing.module';
 import { ChatComponent } from './chat.component';
+import { MessageComponent } from './components/message/message.component';
 
 @NgModule({
-  declarations: [ChatComponent],
+  declarations: [ChatComponent, MessageComponent],
   imports: [
     CommonModule,
     FormsModule,

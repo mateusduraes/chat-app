@@ -1,0 +1,4 @@
+<div class="message" [class.mine]="createdByLoggedUser">
+  <img class="author-picture" [src]="createdByLoggedUser ? 'assets/images/user.png' : 'assets/images/bot.png'" alt="Author picture">
+  <p class="text">{{ message }}</p>
+</div>

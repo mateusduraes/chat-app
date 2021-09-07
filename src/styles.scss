@@ -9,13 +9,18 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+:root {
+  --primary-color: #2c6fd1;
+  --gray-color: #586066;
+}
+
 $primary-palette: (
   50 : #e6eef9,
   100 : #c0d4f1,
   200 : #96b7e8,
   300 : #6b9adf,
   400 : #4c85d8,
-  500 : #2c6fd1,
+  500 : var(--primary-color),
   600 : #2767cc,
   700 : #215cc6,
   800 : #1b52c0,
