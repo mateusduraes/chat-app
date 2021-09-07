@@ -16,6 +16,8 @@ import { DateComponent } from './components/date/date.component';
 import { MapComponent } from './components/map/map.component';
 import { MessageComponent } from './components/message/message.component';
 import { RateComponent } from './components/rate/rate.component';
+import { IsCommandPipe } from './pipes/is-command.pipe';
+import { IsMessagePipe } from './pipes/is-message.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { RateComponent } from './components/rate/rate.component';
     MapComponent,
     DateComponent,
     RateComponent,
+    IsCommandPipe,
+    IsMessagePipe,
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject, BehaviorSubject } from 'rxjs';
+import { ReplaySubject, BehaviorSubject, Observable } from 'rxjs';
 import { filter, scan } from 'rxjs/operators';
 import { io, Socket } from 'socket.io-client';
+
+import { Command } from '../models/command';
+import { ChatEvent, ChatEventType } from '../models/events';
+import { Message } from '../models/message';
 
 import { environment } from './../../../environments/environment';
 import { LoggedUser } from './../../login/models/logged-user';
@@ -13,7 +17,7 @@ import { AuthService } from './../../login/services/auth.service';
 export class ChatService {
   private user: LoggedUser;
   private socket: Socket;
-  private newEvent$ = new ReplaySubject<any>();
+  private newEvent$ = new ReplaySubject<ChatEvent<Command | Message>>();
   private isSocketConnected$ = new BehaviorSubject<boolean>(false);
 
   constructor(private authService: AuthService) {
@@ -35,14 +39,19 @@ export class ChatService {
       author: this.user.nickname,
       message,
     };
-    this.newEvent$.next({ ...messageObj, createdByLoggedUser: true });
-    this.socket.emit('message', messageObj);
+    this.newEvent$.next({
+      payload: {
+        ...messageObj,
+        createdByLoggedUser: true,
+      },
+      type: ChatEventType.MESSAGE,
+    });
+    this.socket.emit(ChatEventType.MESSAGE, messageObj);
   }
 
   // TODO: Add dynamic type based on type payload
   disapatchCommand(command: string, data: any): void {
-    // TODO: Add type ENUM
-    this.socket.emit('command', {
+    this.socket.emit(ChatEventType.COMMAND, {
       author: this.user.nickname,
       command: {
         type: command,
@@ -56,7 +65,7 @@ export class ChatService {
     this.watchCommands();
   }
 
-  get messages$() {
+  get messages$(): Observable<Array<ChatEvent<Message | Command>>> {
     return this.newEvent$
       .asObservable()
       .pipe(
@@ -69,15 +78,21 @@ export class ChatService {
   }
 
   private watchMessages(): void {
-    this.socket.on('message', (event: any) => {
-      this.newEvent$.next(event);
-    });
+    this.socket.on(ChatEventType.MESSAGE, (event: Message) =>
+      this.newEvent$.next({
+        payload: { ...event },
+        type: ChatEventType.MESSAGE,
+      }),
+    );
   }
 
   private watchCommands(): void {
-    this.socket.on('command', (event: any) => {
-      this.newEvent$.next(event);
-    });
+    this.socket.on(ChatEventType.COMMAND, (event: Command) =>
+      this.newEvent$.next({
+        payload: { ...event },
+        type: ChatEventType.COMMAND,
+      }),
+    );
   }
 
   private watchUser(): void {

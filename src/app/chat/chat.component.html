@@ -18,10 +18,8 @@
 
   <div class="messages-container">
     <div *ngFor="let event of eventList$ | async">
-      <app-command *ngIf="event.command; else messageTemplate" [command]="event.command">{{ event | json }}</app-command>
-      <ng-template #messageTemplate>
-        <app-message [message]="event.message" [createdByLoggedUser]="event.createdByLoggedUser"></app-message>
-      </ng-template>
+      <app-command *ngIf="event | isCommand" [command]="event.payload">{{ event | json }}</app-command>
+      <app-message *ngIf="event | isMessage" [message]="event.payload.message" [createdByLoggedUser]="event.payload.createdByLoggedUser"></app-message>
     </div>
   </div>
 

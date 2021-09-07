@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { AuthService } from './../login/services/auth.service';
+import { Command } from './models/command';
+import { ChatEvent } from './models/events';
+import { Message } from './models/message';
 import { ChatService } from './services/chat.service';
 
 @Component({
@@ -11,7 +14,7 @@ import { ChatService } from './services/chat.service';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  eventList$: Observable<any[]>;
+  eventList$: Observable<Array<ChatEvent<Message | Command>>>;
   isConnected$: Observable<boolean>;
   message: string;
 

@@ -1,6 +1,6 @@
-<div class="chat-row-container" [ngSwitch]="command.type">
-  <app-complete *ngSwitchCase="'complete'"></app-complete>
-  <app-date *ngSwitchCase="'date'"></app-date>
-  <app-map  *ngSwitchCase="'map'"></app-map>
-  <app-rate *ngSwitchCase="'rate'"></app-rate>
+<div class="chat-row-container" [ngSwitch]="command.command.type">
+  <app-complete *ngSwitchCase="commandTypeEnum.COMPLETE"></app-complete>
+  <app-date *ngSwitchCase="commandTypeEnum.DATE"></app-date>
+  <app-map  *ngSwitchCase="commandTypeEnum.MAP"></app-map>
+  <app-rate *ngSwitchCase="commandTypeEnum.RATE"></app-rate>
 </div>
