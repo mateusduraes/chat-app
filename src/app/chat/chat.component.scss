@@ -11,10 +11,16 @@
   .messages-container {
     flex: 1;
     padding: 16px;
+    overflow-y: scroll;
   }
 
   .chat-input-container {
     padding: 16px;
+
+    .command-btn-container {
+      display: flex;
+      justify-content: flex-end;
+    }
 
     .chat-form-field {
       display: initial;

@@ -16,14 +16,19 @@
     </mat-menu>
   </mat-toolbar>
 
-
   <div class="messages-container">
     <div *ngFor="let event of eventList$ | async">
-      <app-message [message]="event.message" [createdByLoggedUser]="event.createdByLoggedUser"></app-message>
+      <app-command *ngIf="event.command; else messageTemplate" [command]="event.command">{{ event | json }}</app-command>
+      <ng-template #messageTemplate>
+        <app-message [message]="event.message" [createdByLoggedUser]="event.createdByLoggedUser"></app-message>
+      </ng-template>
     </div>
   </div>
 
   <div class="chat-input-container">
+    <div class="command-btn-container">
+      <button (click)="askForCommand()" mat-flat-button color="primary" class="command-btn">Ask for a command</button>
+    </div>
     <mat-form-field appearance="outline" class="chat-form-field">
       <input matInput type="text" placeholder="Send message" [(ngModel)]="message">
       <mat-icon matSuffix color="primary" (click)="send()">send</mat-icon>

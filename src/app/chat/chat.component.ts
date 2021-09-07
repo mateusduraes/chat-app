@@ -26,7 +26,10 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   send(): void {
     this.chatService.dispatchMessage(this.message);
-    // this.chatService.disapatchCommand('rate', {});
+  }
+
+  askForCommand(): void {
+    this.chatService.disapatchCommand('rate', {});
   }
 
   logout(): void {
