@@ -10,5 +10,12 @@ import { Command, CommandType } from './../../models/command';
 export class CommandComponent {
   @Input() command: Command;
   commandTypeEnum = CommandType;
+  isAnswered: boolean = false;
+
   constructor() {}
+
+  onAnswer(response: string): void {
+    console.log('response', response);
+    this.isAnswered = true;
+  }
 }

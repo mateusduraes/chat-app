@@ -1,6 +1,13 @@
-<div class="chat-row-container" [ngSwitch]="command.command.type">
-  <app-complete *ngSwitchCase="commandTypeEnum.COMPLETE"></app-complete>
-  <app-date *ngSwitchCase="commandTypeEnum.DATE"></app-date>
-  <app-map  *ngSwitchCase="commandTypeEnum.MAP"></app-map>
-  <app-rate *ngSwitchCase="commandTypeEnum.RATE"></app-rate>
-</div>
+<ng-container *ngIf="!isAnswered; else answeredMessageTemplate">
+  <div class="chat-row-container" [ngSwitch]="command.command.type">
+    <app-complete (answer)="onAnswer($event)" *ngSwitchCase="commandTypeEnum.COMPLETE"></app-complete>
+    <app-date (answer)="onAnswer($event)" *ngSwitchCase="commandTypeEnum.DATE"></app-date>
+    <app-map (answer)="onAnswer($event)" *ngSwitchCase="commandTypeEnum.MAP"></app-map>
+    <app-rate (answer)="onAnswer($event)" *ngSwitchCase="commandTypeEnum.RATE"></app-rate>
+  </div>
+</ng-container>
+
+<ng-template #answeredMessageTemplate>
+  <!-- TODO: Get the message here -->
+  <app-message [createdByLoggedUser]="true" [message]="'Answered'"></app-message>
+</ng-template>
