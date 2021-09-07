@@ -31,11 +31,12 @@ export class ChatService {
   }
 
   dispatchMessage(message: string): void {
-    // TODO: Add type ENUM
-    this.socket.emit('message', {
+    const messageObj = {
       author: this.user.nickname,
       message,
-    });
+    };
+    this.newEvent$.next({ ...messageObj, createdByLoggedUser: true });
+    this.socket.emit('message', messageObj);
   }
 
   // TODO: Add dynamic type based on type payload

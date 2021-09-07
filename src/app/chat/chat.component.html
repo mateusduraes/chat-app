@@ -19,8 +19,7 @@
 
   <div class="messages-container">
     <div *ngFor="let event of eventList$ | async">
-      <app-message [message]="event.message"></app-message>
-      <app-message [message]="event.message" [createdByLoggedUser]="true"></app-message>
+      <app-message [message]="event.message" [createdByLoggedUser]="event.createdByLoggedUser"></app-message>
     </div>
   </div>
 
