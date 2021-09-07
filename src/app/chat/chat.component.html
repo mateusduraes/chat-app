@@ -1,1 +1,32 @@
-<p>chat works!</p>
+<main class="chat-container">
+  <mat-toolbar color="primary">
+    <span>Chat app</span>
+    <span class="spacer"></span>
+    <button mat-icon-button aria-label="Chat menu" [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-slide-toggle color="primary" checked>Dark mode</mat-slide-toggle>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+
+  <div class="messages-container">
+    <div *ngFor="let event of eventList$ | async">
+      {{ event | json }}
+    </div>
+  </div>
+
+  <div class="chat-input-container">
+    <mat-form-field appearance="outline" class="chat-form-field">
+      <input matInput type="text" placeholder="Send message" [(ngModel)]="message">
+      <mat-icon matSuffix color="primary" (click)="send()">send</mat-icon>
+    </mat-form-field>
+  </div>
+</main>

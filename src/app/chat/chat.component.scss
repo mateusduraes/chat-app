@@ -1,0 +1,23 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.chat-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .messages-container {
+    flex: 1;
+    padding: 16px;
+  }
+
+  .chat-input-container {
+    padding: 16px;
+
+    .chat-form-field {
+      display: initial;
+    }
+  }
+}

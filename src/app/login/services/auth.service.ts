@@ -21,6 +21,11 @@ export class AuthService {
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(loggedUser));
   }
 
+  logout(): void {
+    this.loggedUser$.next(null);
+    localStorage.setItem(this.STORAGE_KEY, null);
+  }
+
   get loggedUser(): Observable<LoggedUser | null> {
     return this.loggedUser$.asObservable();
   }

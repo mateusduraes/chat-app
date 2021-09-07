@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  socketUrl: 'https://demo-chat-server.on.ag/',
 };
 
 /*
