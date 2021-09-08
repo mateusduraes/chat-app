@@ -1,7 +1,8 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
@@ -16,6 +17,7 @@ import { DateComponent } from './components/date/date.component';
 import { MapComponent } from './components/map/map.component';
 import { MessageComponent } from './components/message/message.component';
 import { RateComponent } from './components/rate/rate.component';
+import { HighlightStarPipe } from './pipes/highlight-star.pipe';
 import { IsCommandPipe } from './pipes/is-command.pipe';
 import { IsMessagePipe } from './pipes/is-message.pipe';
 
@@ -30,6 +32,7 @@ import { IsMessagePipe } from './pipes/is-message.pipe';
     RateComponent,
     IsCommandPipe,
     IsMessagePipe,
+    HighlightStarPipe,
   ],
   imports: [
     CommonModule,
@@ -41,6 +44,8 @@ import { IsMessagePipe } from './pipes/is-message.pipe';
     MatMenuModule,
     MatSlideToggleModule,
     MatInputModule,
+    MatButtonToggleModule,
   ],
+  providers: [DatePipe],
 })
 export class ChatModule {}

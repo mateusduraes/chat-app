@@ -1,1 +1,9 @@
-<p>rate works!</p>
+<app-message message="Please rate your experience">
+  <div class="rating">
+    <span [class.readonly]="answered" [class.selected]="5 | highlightStar:questionAnswer" (click)="answerQuestion(5)">☆</span>
+    <span [class.readonly]="answered" [class.selected]="4 | highlightStar:questionAnswer" (click)="answerQuestion(4)">☆</span>
+    <span [class.readonly]="answered" [class.selected]="3 | highlightStar:questionAnswer" (click)="answerQuestion(3)">☆</span>
+    <span [class.readonly]="answered" [class.selected]="2 | highlightStar:questionAnswer" (click)="answerQuestion(2)">☆</span>
+    <span [class.readonly]="answered" [class.selected]="1 | highlightStar:questionAnswer" (click)="answerQuestion(1)">☆</span>
+  </div>
+</app-message>

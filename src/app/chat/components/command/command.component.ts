@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Command, CommandType } from './../../models/command';
 
@@ -9,13 +9,12 @@ import { Command, CommandType } from './../../models/command';
 })
 export class CommandComponent {
   @Input() command: Command;
+  @Output() userAnswer: EventEmitter<string> = new EventEmitter();
   commandTypeEnum = CommandType;
-  isAnswered: boolean = false;
 
   constructor() {}
 
   onAnswer(response: string): void {
-    console.log('response', response);
-    this.isAnswered = true;
+    this.userAnswer.emit(response);
   }
 }

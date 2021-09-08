@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -17,6 +23,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   eventList$: Observable<Array<ChatEvent<Message | Command>>>;
   isConnected$: Observable<boolean>;
   message: string;
+  @ViewChild('messagesContainer') chatContainer: ElementRef<HTMLElement>;
 
   constructor(
     private chatService: ChatService,
@@ -31,8 +38,12 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.chatService.dispatchMessage(this.message);
   }
 
-  askForCommand(): void {
-    this.chatService.disapatchCommand('rate', {});
+  onAskForCommand(): void {
+    this.chatService.dispatchCommand();
+  }
+
+  onUserAnswer(answer: string): void {
+    this.chatService.dispatchMessage(answer);
   }
 
   logout(): void {
@@ -44,9 +55,14 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.chatService.connect();
     this.chatService.watch();
+    this.watchScroll();
   }
 
   ngOnDestroy(): void {
     this.chatService.disconnect();
+  }
+
+  private watchScroll(): void {
+    // this.chatContainer.nativeElement.scrollTo(0)
   }
 }

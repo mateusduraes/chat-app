@@ -1,1 +1,6 @@
-<p>complete works!</p>
+<app-message message="Do you want to finish the conversation?">
+  <div class="options" *ngIf="!answered">
+    <button class="yes-btn" mat-raised-button color="accent" (click)="answerQuestion('Yes')">Yes</button>
+    <button mat-raised-button (click)="answerQuestion('No')">No</button>
+  </div>
+</app-message>

@@ -10,11 +10,14 @@
     margin-right: 8px;
   }
 
-  .text {
-    margin: 0;
+  .text-container {
     background-color: var(--primary-color);
     border-radius: 8px;
     padding: 8px;
+
+    .message {
+      margin: 0;
+    }
   }
 
   &.mine  {

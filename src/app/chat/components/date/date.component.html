@@ -1,1 +1,7 @@
-<p>date works!</p>
+<app-message message="Please, select the date for your appointment">
+  <div class="date-buttons" *ngIf="!answered">
+    <mat-button-toggle *ngFor="let day of daysToSelect" (click)="answerDateQuestion(day)">
+      {{ day | date:'E' }} - {{ day | date:'dd.MM' }}
+    </mat-button-toggle>
+  </div>
+</app-message>

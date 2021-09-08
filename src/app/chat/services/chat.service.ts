@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject, BehaviorSubject, Observable } from 'rxjs';
-import { filter, scan } from 'rxjs/operators';
+import { filter, scan, tap } from 'rxjs/operators';
 import { io, Socket } from 'socket.io-client';
 
 import { Command } from '../models/command';
@@ -49,15 +49,8 @@ export class ChatService {
     this.socket.emit(ChatEventType.MESSAGE, messageObj);
   }
 
-  // TODO: Add dynamic type based on type payload
-  disapatchCommand(command: string, data: any): void {
-    this.socket.emit(ChatEventType.COMMAND, {
-      author: this.user.nickname,
-      command: {
-        type: command,
-        data,
-      },
-    });
+  dispatchCommand(): void {
+    this.socket.emit(ChatEventType.COMMAND);
   }
 
   watch(): void {
@@ -66,11 +59,10 @@ export class ChatService {
   }
 
   get messages$(): Observable<Array<ChatEvent<Message | Command>>> {
-    return this.newEvent$
-      .asObservable()
-      .pipe(
-        scan((currentEvents, newEvent) => [...currentEvents, newEvent], []),
-      );
+    return this.newEvent$.asObservable().pipe(
+      tap((d) => console.log(d)),
+      scan((currentEvents, newEvent) => [...currentEvents, newEvent], []),
+    );
   }
 
   get isConnected$() {

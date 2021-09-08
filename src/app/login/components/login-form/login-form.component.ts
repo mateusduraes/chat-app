@@ -15,7 +15,7 @@ export class LoginFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {}
 
-  submit(): void {
+  onSubmit(): void {
     const { value } = this.loginForm;
     this.loginSubmit.next(value);
   }
