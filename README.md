@@ -1,4 +1,4 @@
-# ChatApp
+# Chat App
 
 This project was created using Angular 12.2.4
 
