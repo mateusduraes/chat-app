@@ -31,7 +31,7 @@ export class DateComponent extends WidgetComponent implements OnInit {
       .filter((date) => date.getDay() !== sunday && date.getDay() !== saturday);
   }
 
-  answerDateQuestion(date: Date) {
+  onAnswerDateQuestion(date: Date) {
     const weekday = this.datePipe.transform(date, 'E');
     const dayAndMonth = this.datePipe.transform(date, 'dd.MM');
     this.answerQuestion(`${weekday} - ${dayAndMonth}`);
