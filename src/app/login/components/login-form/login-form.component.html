@@ -10,7 +10,7 @@
     <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
   </mat-form-field>
 
-  <button mat-flat-button color="primary" (click)="onSubmit()" type="submit">
+  <button mat-flat-button color="primary" (click)="onSubmit()" type="submit" [disabled]="loginForm.invalid">
     Sign In
   </button>
 </form>
