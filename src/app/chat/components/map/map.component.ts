@@ -45,8 +45,5 @@ export class MapComponent extends WidgetComponent implements AfterViewInit {
       },
     );
     tiles.addTo(this.map);
-
-    const marker = L.marker([this.lat, this.lng]);
-    marker.addTo(this.map);
   }
 }

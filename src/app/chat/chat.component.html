@@ -29,7 +29,7 @@
     </div>
     <mat-form-field appearance="outline" class="chat-form-field">
       <mat-label>Send message</mat-label>
-      <input matInput type="text" placeholder="Send message" [(ngModel)]="message">
+      <input matInput type="text" placeholder="Send message" [(ngModel)]="message" (keyup.enter)="send()">
       <mat-icon matSuffix color="primary" (click)="send()">send</mat-icon>
     </mat-form-field>
   </div>

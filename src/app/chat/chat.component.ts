@@ -5,8 +5,9 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { AuthService } from './../login/services/auth.service';
 import { Command } from './models/command';
@@ -24,18 +25,28 @@ export class ChatComponent implements OnInit, OnDestroy {
   isConnected$: Observable<boolean>;
   message: string;
   @ViewChild('messagesContainer') chatContainer: ElementRef<HTMLElement>;
+  private scrollSubscription: Subscription;
 
   constructor(
     private chatService: ChatService,
     private router: Router,
     private authService: AuthService,
+    private snackbar: MatSnackBar,
   ) {
     this.eventList$ = this.chatService.messages$;
     this.isConnected$ = this.chatService.isConnected$;
   }
 
   send(): void {
+    if (!this.message) {
+      this.snackbar.open('Please type a message', 'Ok', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
+      return;
+    }
     this.chatService.dispatchMessage(this.message);
+    this.message = '';
   }
 
   onAskForCommand(): void {
@@ -60,9 +71,15 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.chatService.disconnect();
+    this.scrollSubscription.unsubscribe();
   }
 
   private watchScroll(): void {
-    // this.chatContainer.nativeElement.scrollTo(0)
+    this.scrollSubscription = this.eventList$.subscribe(() => {
+      setTimeout(() => {
+        const element = this.chatContainer.nativeElement;
+        element.scroll({ top: element.scrollHeight, behavior: 'smooth' });
+      }, 150);
+    });
   }
 }
