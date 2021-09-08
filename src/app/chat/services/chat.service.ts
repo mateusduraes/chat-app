@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject, BehaviorSubject, Observable } from 'rxjs';
-import { filter, scan, tap } from 'rxjs/operators';
+import { filter, scan } from 'rxjs/operators';
 import { io, Socket } from 'socket.io-client';
 
 import { Command } from '../models/command';
@@ -60,10 +60,11 @@ export class ChatService {
   }
 
   get messages$(): Observable<Array<ChatEvent<Message | Command>>> {
-    return this.newEvent$.asObservable().pipe(
-      tap((d) => console.log(d)),
-      scan((currentEvents, newEvent) => [...currentEvents, newEvent], []),
-    );
+    return this.newEvent$
+      .asObservable()
+      .pipe(
+        scan((currentEvents, newEvent) => [...currentEvents, newEvent], []),
+      );
   }
 
   get isConnected$() {
