@@ -15,6 +15,8 @@ describe('MapComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MapComponent);
     component = fixture.componentInstance;
+    component.lat = 38.8951;
+    component.lng = -77.0364;
     fixture.detectChanges();
   });
 

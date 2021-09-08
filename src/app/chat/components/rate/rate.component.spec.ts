@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HighlightStarPipe } from '../../pipes/highlight-star.pipe';
+
 import { RateComponent } from './rate.component';
 
 describe('RateComponent', () => {
@@ -8,7 +10,7 @@ describe('RateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RateComponent],
+      declarations: [RateComponent, HighlightStarPipe],
     }).compileComponents();
   });
 
