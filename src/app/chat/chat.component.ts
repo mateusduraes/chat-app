@@ -8,7 +8,11 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
+import { ThemeOption } from '../core/models/theme';
+
+import { ThemeService } from './../core/service/theme.service';
 import { AuthService } from './../login/services/auth.service';
 import { Command } from './models/command';
 import { ChatEvent } from './models/events';
@@ -21,6 +25,7 @@ import { ChatService } from './services/chat.service';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit, OnDestroy {
+  isDarkMode$: Observable<boolean>;
   eventList$: Observable<Array<ChatEvent<Message | Command>>>;
   isConnected$: Observable<boolean>;
   message: string;
@@ -32,9 +37,13 @@ export class ChatComponent implements OnInit, OnDestroy {
     private router: Router,
     private authService: AuthService,
     private snackbar: MatSnackBar,
+    private themeService: ThemeService,
   ) {
     this.eventList$ = this.chatService.messages$;
     this.isConnected$ = this.chatService.isConnected$;
+    this.isDarkMode$ = this.themeService.theme$.pipe(
+      map((mode) => mode === ThemeOption.DARK),
+    );
   }
 
   send(): void {
@@ -61,6 +70,10 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.authService.logout();
     this.chatService.disconnect();
     this.router.navigate(['']);
+  }
+
+  changeTheme(): void {
+    this.themeService.changeTheme();
   }
 
   ngOnInit(): void {

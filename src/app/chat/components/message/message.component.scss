@@ -13,6 +13,7 @@
 
   .text-container {
     background-color: var(--primary-color);
+    color: var(--primary-contrast);
     border-radius: 8px;
     padding: 8px;
 
@@ -24,8 +25,9 @@
   &.mine  {
     flex-direction: row-reverse;
 
-    .text {
+    .text-container {
       background-color: var(--gray-color);
+      color: var(--gray-contrast);
     }
 
     .author-picture {

@@ -1,4 +1,4 @@
-<main class="chat-container">
+<main class="chat-container mat-app-background">
   <mat-toolbar color="primary">
     <span>Chat app</span>
     <span class="spacer"></span>
@@ -6,8 +6,8 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-slide-toggle color="primary" checked>Dark mode</mat-slide-toggle>
+      <button mat-menu-item (click)="changeTheme()">
+        <mat-slide-toggle color="primary" [checked]="isDarkMode$ | async">Dark mode</mat-slide-toggle>
       </button>
       <button mat-menu-item (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
