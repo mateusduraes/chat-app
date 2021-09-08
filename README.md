@@ -1,8 +1,5 @@
-# Chat App
+# <img width="40" height="40" src="readme.png"> Chat App
 
-<p align="center">
-  <img width="96" height="96" src="readme.png">
-</p>
 
 This project was created using Angular 12.2.4
 
