@@ -32,6 +32,7 @@ export class ChatService {
   disconnect(): void {
     this.socket.disconnect();
     this.isSocketConnected$.next(false);
+    this.newEvent$ = new ReplaySubject<ChatEvent<Command | Message>>();
   }
 
   dispatchMessage(message: string): void {
