@@ -29,4 +29,11 @@ describe('CommandComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit answered value via the event emitter when answering the question', () => {
+    const eventSpy = spyOn(component.userAnswer, 'emit');
+    const stubAnswer = 'test';
+    component.onAnswer(stubAnswer);
+    expect(eventSpy).toHaveBeenCalledWith(stubAnswer);
+  });
 });

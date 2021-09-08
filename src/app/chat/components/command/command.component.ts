@@ -12,8 +12,6 @@ export class CommandComponent {
   @Output() userAnswer: EventEmitter<string> = new EventEmitter();
   commandTypeEnum = CommandType;
 
-  constructor() {}
-
   onAnswer(response: string): void {
     this.userAnswer.emit(response);
   }

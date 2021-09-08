@@ -17,11 +17,15 @@ describe('DateComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DateComponent);
     component = fixture.componentInstance;
-    component.dateISO = '2021-09-05T21:00:10.016Z';
+    component.dateISO = '2021-09-05T21:00:10';
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should fill #daysToSelect array', () => {
+    expect(component.daysToSelect.length).toBeDefined();
   });
 });
