@@ -2,9 +2,9 @@
 
 This project was created using Angular 12.2.4
 
-## Running the project
-
 The project is available [here](https://stupefied-johnson-329a7c.netlify.app/), but, if you prefer running locally, please, follow the instructions bellow.
+
+## Running the project
 
 First, you need to download the project and install the dependencies
 
